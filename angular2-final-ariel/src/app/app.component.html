@@ -1,0 +1,9 @@
+<h1>Angular Router</h1>
+<nav>
+  <a routerLink="/login" routerLinkActive="login">Login</a>
+</nav>
+<router-outlet></router-outlet>
+
+<div *ngIf="isLogged()">
+    <app-chat></app-chat>
+</div>
