@@ -1,0 +1,3 @@
+<div *ngFor="let chatRoom of chatRooms" [routerLink]="['/room', chatRoom.id]">
+  <a>{{chatRoom.name}}</a>
+</div>
