@@ -7,6 +7,16 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const staticRoot = 'dist/';
 
+const roomToUsers = {
+    1: [],
+    2: [],
+}
+
+const roomToMessages = {
+    1: [],
+    2: [],
+}
+
 app.set('port', (process.env.PORT || 3000));
 app.use(express.static(staticRoot));
 
@@ -16,7 +26,14 @@ io.on('connection', socket => {
         console.log('user disconnected');
     });
     socket.on('add-message', msg => {
-        io.sockets.emit('message', msg);
+        const roomId = msg.substr(msg.indexOf('[') + 1, msg.indexOf(']') - 1);
+        const message = msg.substr(msg.indexOf(']') + 1);
+        roomToUsers[roomId].push(socket);
+        roomToMessages[roomId].push(message);
+        for (socket of roomToUsers[roomId]) {
+            socket.emit('message', message);
+        }
+        // io.sockets.emit('message', message);
     });
 });
 

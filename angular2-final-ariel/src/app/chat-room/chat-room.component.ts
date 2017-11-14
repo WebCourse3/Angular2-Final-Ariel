@@ -33,7 +33,7 @@ export class ChatRoomComponent implements OnInit {
   }
 
   sendMessage() {
-    this.chatService.sendMessage(this.message);
+    this.chatService.sendMessage(this.chatRoom.id, this.message);
     this.message = '';
   }
 }
