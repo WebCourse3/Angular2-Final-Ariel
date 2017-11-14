@@ -10,7 +10,6 @@ export class AppComponent {
   constructor(private authenticationService: AuthenticationService) { }
 
   isLogged() {
-    console.log(localStorage.getItem('currentUser'));
     return localStorage.getItem('currentUser');
   }
 
