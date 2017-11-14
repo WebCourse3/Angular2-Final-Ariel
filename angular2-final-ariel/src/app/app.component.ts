@@ -7,9 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   isLogged() {
+    console.log(localStorage.getItem('currentUser'));
     return localStorage.getItem('currentUser');
+  }
+
+  logout() {
+    this.authenticationService.logout();
   }
 }
