@@ -1,3 +1,6 @@
+import { ChatRoomsService } from '../services/chat-rooms.service';
+import { Observable } from 'rxjs/Rx';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { ChatRoom } from './chat-room';
 
@@ -9,10 +12,15 @@ import { ChatRoom } from './chat-room';
 })
 export class ChatRoomComponent implements OnInit {
 
-  constructor() { }
+  public chatRoom: ChatRoom;
 
-  @Input() private chatRoom: ChatRoom;
+  constructor(private route: ActivatedRoute, private chatRoomService: ChatRoomsService) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.chatRoom = new ChatRoom();
+      this.chatRoom.id = +params['id'];
+      this.chatRoom.name = this.chatRoomService.getRoomById(+params['id']).name;
+    });
   }
 }

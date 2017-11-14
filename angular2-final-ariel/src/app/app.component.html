@@ -2,8 +2,9 @@
 <nav>
   <a routerLink="/login" routerLinkActive="login">Login</a>
 </nav>
-<router-outlet></router-outlet>
 
 <div *ngIf="isLogged()">
     <app-chat></app-chat>
 </div>
+
+<router-outlet></router-outlet>

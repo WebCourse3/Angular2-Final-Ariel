@@ -13,6 +13,7 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'room/:id', component: ChatRoomComponent},
 ];
 
 
